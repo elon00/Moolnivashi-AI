@@ -1,11 +1,14 @@
 name: Moolnivashi AI Security & Audit
+
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
+
 permissions:
   contents: read
+
 jobs:
   audit:
     runs-on: ubuntu-latest
@@ -14,10 +17,26 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Verify Truth Protocol & Deployment Manifest
+      - name: Secret leak scan
+        shell: bash
         run: |
-          node -e '
-            const fs = require("fs");
-            if (!fs.existsSync("canisters/pqc_attestation/main.mo")) throw new Error("PQC Attestation missing");
-            console.log("Security & PQC verification pass.");
-          '
+          ! grep -RInE --exclude-dir=.git --exclude='*.lock' '(BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY|seed phrase|mnemonic)' . || (echo 'Potential secret material detected' && exit 1)
+      - name: x402 fail-closed verification
+        run: npm run test:x402
+      - name: PQC truth gate
+        shell: bash
+        run: |
+          test -f canisters/pqc_attestation/main.mo
+          if grep -q 'mldsaCryptographicVerification: true' scripts/mission.js; then
+            echo 'False ML-DSA verification claim detected.'
+            exit 1
+          fi
+          echo 'PQC schema/attestation source present; cryptographic ML-DSA verification remains a separate production gate.'
+      - name: Deployment truth gate
+        shell: bash
+        run: |
+          if [ -f deployments/mainnet-evidence.json ]; then
+            node -e "const fs=require('fs'); const d=JSON.parse(fs.readFileSync('deployments/mainnet-evidence.json')); if(d.verification?.independentlyVerified!==true) process.exit(1);"
+          else
+            echo 'No mainnet evidence committed; mainnet-live status is not claimed.'
+          fi
