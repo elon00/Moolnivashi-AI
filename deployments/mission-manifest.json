@@ -1,0 +1,137 @@
+{
+  "project": "Qmoosa Universal Chain Fusion",
+  "version": "1.0.0",
+  "mode": "local",
+  "timestamp": "2026-10-04T16:40:16.521Z",
+  "chains": [
+    {
+      "id": "bitcoin",
+      "name": "Bitcoin",
+      "tier": "TierA",
+      "scheme": "ecdsa_secp256k1",
+      "rpcType": "direct_protocol",
+      "status": "VERIFIED_TESTING_BASELINE"
+    },
+    {
+      "id": "dogecoin",
+      "name": "Dogecoin",
+      "tier": "TierA",
+      "scheme": "ecdsa_secp256k1",
+      "rpcType": "direct_protocol",
+      "status": "VERIFIED_TESTING_BASELINE"
+    },
+    {
+      "id": "ethereum",
+      "name": "Ethereum",
+      "tier": "TierB",
+      "scheme": "ecdsa_secp256k1",
+      "rpcType": "dedicated_rpc_canister",
+      "status": "VERIFIED_TESTING_BASELINE"
+    },
+    {
+      "id": "evm",
+      "name": "EVM Layer 2 (Base/Arbitrum)",
+      "tier": "TierB",
+      "scheme": "ecdsa_secp256k1",
+      "rpcType": "dedicated_rpc_canister",
+      "status": "VERIFIED_TESTING_BASELINE"
+    },
+    {
+      "id": "solana",
+      "name": "Solana",
+      "tier": "TierB",
+      "scheme": "ed25519",
+      "rpcType": "dedicated_rpc_canister",
+      "status": "VERIFIED_TESTING_BASELINE"
+    },
+    {
+      "id": "aptos",
+      "name": "Aptos",
+      "tier": "TierC",
+      "scheme": "ed25519",
+      "rpcType": "chain_key_https_outcalls",
+      "status": "VERIFIED_TESTING_BASELINE"
+    },
+    {
+      "id": "avalanche",
+      "name": "Avalanche",
+      "tier": "TierC",
+      "scheme": "ecdsa_secp256k1",
+      "rpcType": "chain_key_https_outcalls",
+      "status": "VERIFIED_TESTING_BASELINE"
+    },
+    {
+      "id": "cardano",
+      "name": "Cardano",
+      "tier": "TierC",
+      "scheme": "ed25519",
+      "rpcType": "chain_key_https_outcalls",
+      "status": "VERIFIED_TESTING_BASELINE"
+    },
+    {
+      "id": "cosmos",
+      "name": "Cosmos Hub",
+      "tier": "TierC",
+      "scheme": "ecdsa_secp256k1",
+      "rpcType": "chain_key_https_outcalls",
+      "status": "VERIFIED_TESTING_BASELINE"
+    },
+    {
+      "id": "near",
+      "name": "NEAR Protocol",
+      "tier": "TierC",
+      "scheme": "ed25519",
+      "rpcType": "chain_key_https_outcalls",
+      "status": "VERIFIED_TESTING_BASELINE"
+    },
+    {
+      "id": "polkadot",
+      "name": "Polkadot",
+      "tier": "TierC",
+      "scheme": "ed25519",
+      "rpcType": "chain_key_https_outcalls",
+      "status": "VERIFIED_TESTING_BASELINE"
+    },
+    {
+      "id": "stellar",
+      "name": "Stellar",
+      "tier": "TierC",
+      "scheme": "ed25519",
+      "rpcType": "chain_key_https_outcalls",
+      "status": "VERIFIED_TESTING_BASELINE"
+    },
+    {
+      "id": "ton",
+      "name": "The Open Network (TON)",
+      "tier": "TierC",
+      "scheme": "ed25519",
+      "rpcType": "chain_key_https_outcalls",
+      "status": "VERIFIED_TESTING_BASELINE"
+    },
+    {
+      "id": "xrp",
+      "name": "XRP Ledger",
+      "tier": "TierC",
+      "scheme": "ecdsa_secp256k1",
+      "rpcType": "chain_key_https_outcalls",
+      "status": "VERIFIED_TESTING_BASELINE"
+    }
+  ],
+  "canisters": [
+    "chain_router",
+    "identity_auth",
+    "wallet_manager",
+    "transaction_orchestrator",
+    "agent_orchestrator",
+    "x402_gateway",
+    "automation",
+    "governance",
+    "token_registry",
+    "audit_registry",
+    "pqc_attestation"
+  ],
+  "truthProtocol": {
+    "isMainnetDeployed": false,
+    "reason": "Awaiting real cycles and dfx deploy --network ic execution"
+  }
+}

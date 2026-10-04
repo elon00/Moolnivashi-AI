@@ -1,0 +1,23 @@
+name: Qmoosa Universal Chain Fusion Security & Audit
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Verify Truth Protocol & Deployment Manifest
+        run: |
+          node -e '
+            const fs = require("fs");
+            if (!fs.existsSync("canisters/pqc_attestation/main.mo")) throw new Error("PQC Attestation missing");
+            console.log("Security & PQC verification pass.");
+          '

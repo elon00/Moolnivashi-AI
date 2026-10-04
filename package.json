@@ -1,0 +1,35 @@
+{
+  "name": "qmoosa-universal-chain-fusion",
+  "version": "1.0.0",
+  "description": "Qmoosa Universal Chain Fusion: Autonomous 14-Chain Web3 + AI Operating Protocol bridging Bitcoin, Ethereum, Solana, Polkadot, Dogecoin, Cosmos & more via ICP Chain Fusion, x402 & Post-Quantum Cryptography",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "npm --prefix frontend run dev",
+    "build": "npm --prefix frontend run build",
+    "test": "node --test tests/*.test.js",
+    "test:adapters": "node --test tests/adapters.test.js",
+    "test:router": "node --test tests/router.test.js",
+    "test:x402": "node --test tests/x402.test.js",
+    "mission": "node scripts/mission.js",
+    "mission:testnet": "node scripts/mission.js --network testnet",
+    "mission:mainnet": "node scripts/mission.js --network mainnet"
+  },
+  "keywords": [
+    "icp",
+    "chain-fusion",
+    "bitcoin",
+    "ethereum",
+    "solana",
+    "dogecoin",
+    "polkadot",
+    "stellar",
+    "cross-chain",
+    "x402",
+    "pqc",
+    "ai-agents",
+    "web4"
+  ],
+  "author": "Qmoosa Universal Chain Fusion Team",
+  "license": "Apache-2.0"
+}

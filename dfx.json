@@ -1,0 +1,76 @@
+{
+  "version": 1,
+  "dfx": "0.24.0",
+  "canisters": {
+    "chain_router": {
+      "main": "canisters/chain_router/main.mo",
+      "type": "motoko"
+    },
+    "identity_auth": {
+      "main": "canisters/identity_auth/main.mo",
+      "type": "motoko"
+    },
+    "wallet_manager": {
+      "main": "canisters/wallet_manager/main.mo",
+      "type": "motoko"
+    },
+    "transaction_orchestrator": {
+      "main": "canisters/transaction_orchestrator/main.mo",
+      "type": "motoko"
+    },
+    "agent_orchestrator": {
+      "main": "canisters/agent_orchestrator/main.mo",
+      "type": "motoko"
+    },
+    "x402_gateway": {
+      "main": "canisters/x402_gateway/main.mo",
+      "type": "motoko"
+    },
+    "automation": {
+      "main": "canisters/automation/main.mo",
+      "type": "motoko"
+    },
+    "governance": {
+      "main": "canisters/governance/main.mo",
+      "type": "motoko"
+    },
+    "token_registry": {
+      "main": "canisters/token_registry/main.mo",
+      "type": "motoko"
+    },
+    "audit_registry": {
+      "main": "canisters/audit_registry/main.mo",
+      "type": "motoko"
+    },
+    "pqc_attestation": {
+      "main": "canisters/pqc_attestation/main.mo",
+      "type": "motoko"
+    },
+    "frontend": {
+      "dependencies": [
+        "chain_router",
+        "identity_auth",
+        "wallet_manager",
+        "transaction_orchestrator",
+        "agent_orchestrator",
+        "x402_gateway",
+        "automation",
+        "governance",
+        "token_registry",
+        "audit_registry",
+        "pqc_attestation"
+      ],
+      "source": [
+        "frontend/dist"
+      ],
+      "type": "assets"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env"
+}

@@ -1,0 +1,33 @@
+name: Qmoosa Universal Chain Fusion CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Run 14-Chain Adapter & Unit Tests
+        run: npm test
+      - name: Run Master Mission Pipeline
+        run: npm run mission
+      - name: Setup dfx
+        uses: dfinity/setup-dfx@main
+        with:
+          dfx-version: "0.24.0"
+      - name: Compile 11 Motoko Canisters
+        shell: bash
+        run: |
+          dfx identity new ci --storage-mode plaintext --force >/dev/null 2>&1 || true
+          dfx identity use ci >/dev/null 2>&1 || true
+          dfx start --background --clean
+          dfx canister create --all
+          dfx build
+          dfx stop

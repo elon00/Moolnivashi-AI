@@ -1,0 +1,5 @@
+[workspace]
+members = [
+  "packages/chain-sdk-rs",
+]
+resolver = "2"
