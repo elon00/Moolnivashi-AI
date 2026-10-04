@@ -1,0 +1,121 @@
+name: Master One-Click Green Mission
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Run mode'
+        required: true
+        default: 'baseline'
+        type: choice
+        options:
+          - baseline
+          - testnet
+          - mainnet
+      deploy_ic:
+        description: 'Deploy to ICP mainnet after all mainnet gates pass'
+        required: true
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+
+concurrency:
+  group: master-green-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  green-baseline:
+    name: Baseline + Security + Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install frontend dependencies
+        run: npm --prefix frontend ci
+      - name: Run master green automation
+        run: node scripts/master-green.js --mode '${{ inputs.mode || 'baseline' }}'
+      - name: Setup dfx
+        uses: dfinity/setup-dfx@main
+        with:
+          dfx-version: '0.24.0'
+      - name: Compile all Motoko canisters
+        shell: bash
+        run: |
+          dfx identity new ci --storage-mode plaintext --force >/dev/null 2>&1 || true
+          dfx identity use ci >/dev/null 2>&1 || true
+          dfx start --background --clean
+          trap 'dfx stop >/dev/null 2>&1 || true' EXIT
+          dfx canister create --all
+          dfx build
+      - name: Upload green report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: master-green-${{ github.run_id }}
+          path: |
+            deployments/master-green-report.json
+            deployments/mission-manifest.json
+            deployments/*-evidence.json
+          if-no-files-found: warn
+
+  mainnet-deploy:
+    name: Conditional ICP Mainnet Deploy
+    needs: green-baseline
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.mode == 'mainnet' && inputs.deploy_ic }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install frontend dependencies
+        run: npm --prefix frontend ci
+      - name: Setup dfx
+        uses: dfinity/setup-dfx@main
+        with:
+          dfx-version: '0.24.0'
+      - name: Require verified evidence and identity
+        env:
+          DFX_IDENTITY_PEM: ${{ secrets.DFX_IDENTITY_PEM }}
+        shell: bash
+        run: |
+          test -n "$DFX_IDENTITY_PEM" || (echo 'Missing DFX_IDENTITY_PEM' && exit 20)
+          node scripts/master-green.js --mode mainnet
+      - name: Deploy ICP canisters
+        env:
+          DFX_IDENTITY_PEM: ${{ secrets.DFX_IDENTITY_PEM }}
+        shell: bash
+        run: |
+          printf '%s' "$DFX_IDENTITY_PEM" > /tmp/moolnivashi-identity.pem
+          chmod 600 /tmp/moolnivashi-identity.pem
+          dfx identity import moolnivashi /tmp/moolnivashi-identity.pem --storage-mode plaintext --force
+          dfx identity use moolnivashi
+          dfx deploy --network ic
+          mkdir -p deployments
+          dfx canister --network ic id --all > deployments/ic-canister-ids.txt
+          rm -f /tmp/moolnivashi-identity.pem
+      - name: Upload deployment IDs
+        uses: actions/upload-artifact@v4
+        with:
+          name: ic-mainnet-canister-ids-${{ github.run_id }}
+          path: deployments/ic-canister-ids.txt
+
+  summary:
+    name: Mission Summary
+    needs: [green-baseline, mainnet-deploy]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Write summary
+        shell: bash
+        run: |
+          echo '## Moolnivashi AI — Master Green Mission' >> "$GITHUB_STEP_SUMMARY"
+          echo '- Baseline/build/security job: ${{ needs.green-baseline.result }}' >> "$GITHUB_STEP_SUMMARY"
+          echo '- Mainnet deploy job: ${{ needs.mainnet-deploy.result }}' >> "$GITHUB_STEP_SUMMARY"
+          echo '- Production status is only green when live evidence, cryptographic gates, and deployment IDs are independently verified.' >> "$GITHUB_STEP_SUMMARY"
