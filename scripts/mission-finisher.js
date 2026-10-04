@@ -54,7 +54,7 @@ function requireEvidence() {
 }
 
 console.log('===============================================================');
-console.log(' QMOOSA UNIVERSAL CHAIN FUSION — MISSION FINISHER');
+console.log(' MOOLNIVASHI AI — MISSION FINISHER');
 console.log(' Mode: ' + mode.toUpperCase());
 console.log('===============================================================');
 
@@ -70,7 +70,7 @@ if (mode !== 'baseline') {
 }
 
 const report = {
-  project: 'Qmoosa Universal Chain Fusion',
+  project: 'Moolnivashi AI',
   mode,
   completedAt: new Date().toISOString(),
   baselineVerified: true,
