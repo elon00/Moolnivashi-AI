@@ -6,7 +6,7 @@ import { universalWalletManager } from '../packages/wallet-sdk/src/index.js';
 import { x402Gateway } from '../packages/x402-sdk/src/index.js';
 
 console.log('================================================================');
-console.log('   🚀 QMOOSA UNIVERSAL CHAIN FUSION — ONE-CLICK MISSION 🚀     ');
+console.log('   🚀 MOOLNIVASHI AI — ONE-CLICK MISSION 🚀     ');
 console.log('================================================================');
 
 const mode = process.argv.includes('--network') ? process.argv[process.argv.indexOf('--network') + 1] : 'local';
@@ -77,7 +77,7 @@ step(6, 'PQC truth gate (schema present; cryptographic verifier still pending)',
 step(7, 'Generate truth-aligned mission manifest', () => {
   const liveEvidence = mode !== 'local' && fs.existsSync(path.join('deployments', `${mode}-evidence.json`));
   const manifest = {
-    project: 'Qmoosa Universal Chain Fusion',
+    project: 'Moolnivashi AI',
     version: '1.0.0',
     mode,
     timestamp: new Date().toISOString(),
