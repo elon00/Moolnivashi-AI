@@ -16,7 +16,10 @@
     "mission:mainnet": "node scripts/mission.js --network mainnet",
     "mission:finisher": "node scripts/mission-finisher.js --mode baseline",
     "mission:finisher:testnet": "node scripts/mission-finisher.js --mode testnet",
-    "mission:finisher:mainnet": "node scripts/mission-finisher.js --mode mainnet"
+    "mission:finisher:mainnet": "node scripts/mission-finisher.js --mode mainnet",
+    "master:green": "node scripts/master-green.js",
+    "master:green:testnet": "node scripts/master-green.js --mode testnet",
+    "master:green:mainnet": "node scripts/master-green.js --mode mainnet"
   },
   "keywords": [
     "icp",
