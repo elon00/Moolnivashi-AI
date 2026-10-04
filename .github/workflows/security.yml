@@ -1,4 +1,4 @@
-name: Qmoosa Universal Chain Fusion Security & Audit
+name: Moolnivashi AI Security & Audit
 on:
   push:
     branches: [main]
