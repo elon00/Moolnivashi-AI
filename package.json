@@ -13,7 +13,10 @@
     "test:x402": "node --test tests/x402.test.js",
     "mission": "node scripts/mission.js",
     "mission:testnet": "node scripts/mission.js --network testnet",
-    "mission:mainnet": "node scripts/mission.js --network mainnet"
+    "mission:mainnet": "node scripts/mission.js --network mainnet",
+    "mission:finisher": "node scripts/mission-finisher.js --mode baseline",
+    "mission:finisher:testnet": "node scripts/mission-finisher.js --mode testnet",
+    "mission:finisher:mainnet": "node scripts/mission-finisher.js --mode mainnet"
   },
   "keywords": [
     "icp",
