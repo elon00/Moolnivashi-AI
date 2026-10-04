@@ -1,4 +1,4 @@
-name: Qmoosa Universal Chain Fusion CI
+name: Moolnivashi AI CI
 on:
   push:
     branches: [main]
