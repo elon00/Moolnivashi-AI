@@ -1,0 +1,110 @@
+name: Mission Finisher
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Verification mode'
+        required: true
+        default: 'baseline'
+        type: choice
+        options:
+          - baseline
+          - testnet
+          - mainnet
+      deploy_ic:
+        description: 'Deploy ICP canisters after all gates pass (mainnet only)'
+        required: true
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+
+concurrency:
+  group: mission-finisher-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  finish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install frontend dependencies
+        run: npm --prefix frontend ci
+
+      - name: Setup dfx
+        uses: dfinity/setup-dfx@main
+        with:
+          dfx-version: '0.24.0'
+
+      - name: Compile all Motoko canisters
+        shell: bash
+        run: |
+          dfx identity new ci --storage-mode plaintext --force >/dev/null 2>&1 || true
+          dfx identity use ci >/dev/null 2>&1 || true
+          dfx start --background --clean
+          dfx canister create --all
+          dfx build
+          dfx stop
+
+      - name: Run Mission Finisher
+        run: node scripts/mission-finisher.js --mode '${{ inputs.mode }}'
+
+      - name: Require deploy prerequisites
+        if: ${{ inputs.deploy_ic && inputs.mode == 'mainnet' }}
+        env:
+          DFX_IDENTITY_PEM: ${{ secrets.DFX_IDENTITY_PEM }}
+        shell: bash
+        run: |
+          if [ -z "$DFX_IDENTITY_PEM" ]; then
+            echo 'DFX_IDENTITY_PEM secret is required for ICP mainnet deployment.'
+            exit 20
+          fi
+          if [ ! -f deployments/mainnet-evidence.json ]; then
+            echo 'deployments/mainnet-evidence.json is required before deployment.'
+            exit 21
+          fi
+
+      - name: Deploy ICP mainnet canisters
+        if: ${{ inputs.deploy_ic && inputs.mode == 'mainnet' }}
+        env:
+          DFX_IDENTITY_PEM: ${{ secrets.DFX_IDENTITY_PEM }}
+        shell: bash
+        run: |
+          printf '%s' "$DFX_IDENTITY_PEM" > /tmp/mission-identity.pem
+          chmod 600 /tmp/mission-identity.pem
+          dfx identity import mission /tmp/mission-identity.pem --storage-mode plaintext --force
+          dfx identity use mission
+          dfx deploy --network ic
+          dfx canister --network ic id --all > deployments/ic-canister-ids.txt
+          rm -f /tmp/mission-identity.pem
+
+      - name: Upload mission evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mission-finisher-${{ inputs.mode }}-${{ github.run_id }}
+          path: |
+            deployments/mission-manifest.json
+            deployments/mission-finisher-*.json
+            deployments/*-evidence.json
+            deployments/ic-canister-ids.txt
+          if-no-files-found: warn
+
+      - name: Final truth summary
+        if: always()
+        shell: bash
+        run: |
+          echo '## Mission Finisher' >> "$GITHUB_STEP_SUMMARY"
+          echo '- Mode: ${{ inputs.mode }}' >> "$GITHUB_STEP_SUMMARY"
+          echo '- ICP deploy requested: ${{ inputs.deploy_ic }}' >> "$GITHUB_STEP_SUMMARY"
+          echo '- Baseline gates are automated.' >> "$GITHUB_STEP_SUMMARY"
+          echo '- Testnet/mainnet modes remain fail-closed without verifiable live evidence.' >> "$GITHUB_STEP_SUMMARY"
