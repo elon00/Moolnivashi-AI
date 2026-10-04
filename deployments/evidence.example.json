@@ -1,0 +1,17 @@
+{
+  "network": "testnet",
+  "generatedAt": "2026-10-04T00:00:00.000Z",
+  "transactions": [
+    {
+      "chainId": "example-chain",
+      "txHash": "replace-with-real-transaction-hash",
+      "explorerUrl": "replace-with-real-explorer-url",
+      "status": "CONFIRMED"
+    }
+  ],
+  "verification": {
+    "independentlyVerified": false,
+    "method": "live-rpc-or-block-explorer",
+    "notes": "Set independentlyVerified=true only after the recorded transaction evidence has actually been checked."
+  }
+}
