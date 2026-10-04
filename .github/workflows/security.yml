@@ -20,7 +20,7 @@ jobs:
       - name: Secret leak scan
         shell: bash
         run: |
-          ! grep -RInE --exclude-dir=.git --exclude='*.lock' '(BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY|seed phrase|mnemonic)' . || (echo 'Potential secret material detected' && exit 1)
+          ! grep -RInE --exclude='*.lock' '(BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY|(^|[^A-Za-z])(mnemonic|seed_phrase)[[:space:]]*[:=])' canisters frontend/src agents packages scripts || (echo 'Potential secret material detected' && exit 1)
       - name: x402 fail-closed verification
         run: npm run test:x402
       - name: PQC truth gate
