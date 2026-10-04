@@ -1,7 +1,5 @@
-import Principal "mo:base/Principal";
 import Array "mo:base/Array";
 import Nat "mo:base/Nat";
-import Time "mo:base/Time";
 import HashMap "mo:base/HashMap";
 import Text "mo:base/Text";
 
@@ -19,7 +17,7 @@ actor QmoosaGovernance {
   stable var proposal_counter : Nat = 0;
   let proposals = HashMap.HashMap<Text, Proposal>(100, Text.equal, Text.hash);
 
-  public shared({ caller }) func submit_proposal(title : Text, target_chain : Text) : async Proposal {
+  public shared func submit_proposal(title : Text, target_chain : Text) : async Proposal {
     proposal_counter += 1;
     let p : Proposal = {
       id = proposal_counter;

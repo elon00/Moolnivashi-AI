@@ -18,6 +18,10 @@ jobs:
         run: npm test
       - name: Run Master Mission Pipeline
         run: npm run mission
+      - name: Install frontend dependencies
+        run: npm --prefix frontend ci
+      - name: Frontend build
+        run: npm run build
       - name: Setup dfx
         uses: dfinity/setup-dfx@main
         with:

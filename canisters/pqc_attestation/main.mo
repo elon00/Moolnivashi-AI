@@ -1,6 +1,4 @@
 import Principal "mo:base/Principal";
-import Array "mo:base/Array";
-import Nat "mo:base/Nat";
 import Time "mo:base/Time";
 import HashMap "mo:base/HashMap";
 import Text "mo:base/Text";

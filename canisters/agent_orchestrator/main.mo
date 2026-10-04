@@ -18,7 +18,7 @@ actor QmoosaAgentOrchestrator {
   stable var action_counter : Nat = 0;
   let actions = HashMap.HashMap<Text, AgentAction>(100, Text.equal, Text.hash);
 
-  public shared({ caller }) func propose_action(target_chain : Text, action_type : Text) : async AgentAction {
+  public shared func propose_action(target_chain : Text, action_type : Text) : async AgentAction {
     action_counter += 1;
     let id = "act-" # Nat.toText(action_counter);
     let act : AgentAction = {
