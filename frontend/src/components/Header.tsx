@@ -44,7 +44,7 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-xl font-bold tracking-tight text-white font-mono">QMOOSA</span>
+              <span className="text-xl font-bold tracking-tight text-white font-mono">MOOLNIVASHI</span>
               <span className="text-xs px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/40 font-mono font-medium">
                 ICP Native Web4
               </span>
@@ -79,7 +79,7 @@ export const Header: React.FC<HeaderProps> = ({
           <button
             onClick={onOpenQR}
             className="flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700/80 text-cyan-300 text-xs font-mono transition-all shadow-sm hover:border-cyan-500/40"
-            title="Scan or Show Qmoosa QR Code for Instant Payments"
+            title="Scan or Show Moolnivashi QR Code for Instant Payments"
           >
             <QrCode className="w-4 h-4 text-cyan-400" />
             <span className="hidden sm:inline">QR Pay</span>
