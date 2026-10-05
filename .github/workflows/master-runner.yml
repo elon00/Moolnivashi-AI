@@ -18,6 +18,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: Install root dependencies
+        run: npm ci
       - name: Install frontend dependencies
         run: npm --prefix frontend ci
       - name: Run reality-based master runner
