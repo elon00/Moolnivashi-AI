@@ -22,7 +22,10 @@
     "master:green:mainnet": "node scripts/master-green.js --mode mainnet",
     "master": "node scripts/master-runner.js",
     "master:strict": "node scripts/master-runner.js --strict",
-    "deploy:mainnet": "bash scripts/deploy-mainnet.sh"
+    "deploy:mainnet": "bash scripts/deploy-mainnet.sh",
+    "verify:pqc": "node scripts/pqc-verifier.js",
+    "verify:x402": "node scripts/x402-verifier.js",
+    "production:finisher": "node scripts/production-finisher.js"
   },
   "keywords": [
     "icp",
@@ -40,5 +43,8 @@
     "web4"
   ],
   "author": "Moolnivashi AI Team",
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@noble/post-quantum": "^0.7.1"
+  }
 }
