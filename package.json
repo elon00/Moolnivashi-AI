@@ -19,7 +19,10 @@
     "mission:finisher:mainnet": "node scripts/mission-finisher.js --mode mainnet",
     "master:green": "node scripts/master-green.js",
     "master:green:testnet": "node scripts/master-green.js --mode testnet",
-    "master:green:mainnet": "node scripts/master-green.js --mode mainnet"
+    "master:green:mainnet": "node scripts/master-green.js --mode mainnet",
+    "master": "node scripts/master-runner.js",
+    "master:strict": "node scripts/master-runner.js --strict",
+    "deploy:mainnet": "bash scripts/deploy-mainnet.sh"
   },
   "keywords": [
     "icp",
