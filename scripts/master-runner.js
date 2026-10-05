@@ -32,6 +32,8 @@ run('All unit/integration tests','npm test');
 run('14-chain adapter contract tests','npm run test:adapters');
 run('Universal router tests','npm run test:router');
 run('x402 fail-closed/replay tests','npm run test:x402');
+run('ML-DSA-65 cryptographic verification','npm run verify:pqc');
+run('x402 proof-contract verification','npm run verify:x402');
 run('Truth-aligned mission pipeline','npm run mission');
 run('Production frontend build','npm run build');
 
@@ -60,7 +62,7 @@ const codeTruth={
   liveChainEvidenceVerified: !missionSource.includes('SIMULATION_BASELINE_ONLY') && mainnetEvidence,
   thresholdSigningVerified: !missionSource.includes('realThresholdSigningVerified: false'),
   realBroadcastVerified: !missionSource.includes('realBroadcastVerified: false'),
-  mldsaCryptographicVerification: !missionSource.includes('mldsaCryptographicVerification: false'),
+  mldsaCryptographicVerification: exists('deployments/pqc-verification.json'),
   icpMainnetEvidenceVerified: mainnetEvidence
 };
 
