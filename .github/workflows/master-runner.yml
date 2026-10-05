@@ -1,0 +1,46 @@
+name: Moolnivashi Master Runner
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  master:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install frontend dependencies
+        run: npm --prefix frontend ci
+      - name: Run reality-based master runner
+        run: npm run master
+      - name: Setup dfx
+        uses: dfinity/setup-dfx@main
+        with:
+          dfx-version: "0.24.0"
+      - name: Compile all configured Motoko canisters
+        shell: bash
+        run: |
+          dfx identity new ci --storage-mode plaintext --force >/dev/null 2>&1 || true
+          dfx identity use ci >/dev/null 2>&1 || true
+          dfx start --background --clean
+          trap 'dfx stop >/dev/null 2>&1 || true' EXIT
+          dfx canister create --all
+          dfx build
+      - name: Upload master report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: moolnivashi-master-${{ github.run_id }}
+          path: |
+            deployments/master-runner-report.json
+            deployments/mission-manifest.json
+          if-no-files-found: warn
