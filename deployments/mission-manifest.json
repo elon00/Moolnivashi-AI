@@ -2,7 +2,7 @@
   "project": "Moolnivashi AI",
   "version": "1.0.0",
   "mode": "local",
-  "timestamp": "2026-10-04T16:40:16.521Z",
+  "timestamp": "2026-10-05T17:04:13.334Z",
   "chains": [
     {
       "id": "bitcoin",
@@ -10,7 +10,7 @@
       "tier": "TierA",
       "scheme": "ecdsa_secp256k1",
       "rpcType": "direct_protocol",
-      "status": "VERIFIED_TESTING_BASELINE"
+      "status": "SIMULATION_BASELINE_ONLY"
     },
     {
       "id": "dogecoin",
@@ -18,7 +18,7 @@
       "tier": "TierA",
       "scheme": "ecdsa_secp256k1",
       "rpcType": "direct_protocol",
-      "status": "VERIFIED_TESTING_BASELINE"
+      "status": "SIMULATION_BASELINE_ONLY"
     },
     {
       "id": "ethereum",
@@ -26,7 +26,7 @@
       "tier": "TierB",
       "scheme": "ecdsa_secp256k1",
       "rpcType": "dedicated_rpc_canister",
-      "status": "VERIFIED_TESTING_BASELINE"
+      "status": "SIMULATION_BASELINE_ONLY"
     },
     {
       "id": "evm",
@@ -34,7 +34,7 @@
       "tier": "TierB",
       "scheme": "ecdsa_secp256k1",
       "rpcType": "dedicated_rpc_canister",
-      "status": "VERIFIED_TESTING_BASELINE"
+      "status": "SIMULATION_BASELINE_ONLY"
     },
     {
       "id": "solana",
@@ -42,7 +42,7 @@
       "tier": "TierB",
       "scheme": "ed25519",
       "rpcType": "dedicated_rpc_canister",
-      "status": "VERIFIED_TESTING_BASELINE"
+      "status": "SIMULATION_BASELINE_ONLY"
     },
     {
       "id": "aptos",
@@ -50,7 +50,7 @@
       "tier": "TierC",
       "scheme": "ed25519",
       "rpcType": "chain_key_https_outcalls",
-      "status": "VERIFIED_TESTING_BASELINE"
+      "status": "SIMULATION_BASELINE_ONLY"
     },
     {
       "id": "avalanche",
@@ -58,7 +58,7 @@
       "tier": "TierC",
       "scheme": "ecdsa_secp256k1",
       "rpcType": "chain_key_https_outcalls",
-      "status": "VERIFIED_TESTING_BASELINE"
+      "status": "SIMULATION_BASELINE_ONLY"
     },
     {
       "id": "cardano",
@@ -66,7 +66,7 @@
       "tier": "TierC",
       "scheme": "ed25519",
       "rpcType": "chain_key_https_outcalls",
-      "status": "VERIFIED_TESTING_BASELINE"
+      "status": "SIMULATION_BASELINE_ONLY"
     },
     {
       "id": "cosmos",
@@ -74,7 +74,7 @@
       "tier": "TierC",
       "scheme": "ecdsa_secp256k1",
       "rpcType": "chain_key_https_outcalls",
-      "status": "VERIFIED_TESTING_BASELINE"
+      "status": "SIMULATION_BASELINE_ONLY"
     },
     {
       "id": "near",
@@ -82,7 +82,7 @@
       "tier": "TierC",
       "scheme": "ed25519",
       "rpcType": "chain_key_https_outcalls",
-      "status": "VERIFIED_TESTING_BASELINE"
+      "status": "SIMULATION_BASELINE_ONLY"
     },
     {
       "id": "polkadot",
@@ -90,7 +90,7 @@
       "tier": "TierC",
       "scheme": "ed25519",
       "rpcType": "chain_key_https_outcalls",
-      "status": "VERIFIED_TESTING_BASELINE"
+      "status": "SIMULATION_BASELINE_ONLY"
     },
     {
       "id": "stellar",
@@ -98,7 +98,7 @@
       "tier": "TierC",
       "scheme": "ed25519",
       "rpcType": "chain_key_https_outcalls",
-      "status": "VERIFIED_TESTING_BASELINE"
+      "status": "SIMULATION_BASELINE_ONLY"
     },
     {
       "id": "ton",
@@ -106,7 +106,7 @@
       "tier": "TierC",
       "scheme": "ed25519",
       "rpcType": "chain_key_https_outcalls",
-      "status": "VERIFIED_TESTING_BASELINE"
+      "status": "SIMULATION_BASELINE_ONLY"
     },
     {
       "id": "xrp",
@@ -114,7 +114,7 @@
       "tier": "TierC",
       "scheme": "ecdsa_secp256k1",
       "rpcType": "chain_key_https_outcalls",
-      "status": "VERIFIED_TESTING_BASELINE"
+      "status": "SIMULATION_BASELINE_ONLY"
     }
   ],
   "canisters": [
@@ -131,7 +131,12 @@
     "pqc_attestation"
   ],
   "truthProtocol": {
+    "liveChainEvidencePresent": false,
     "isMainnetDeployed": false,
-    "reason": "Awaiting real cycles and dfx deploy --network ic execution"
+    "x402FailClosed": true,
+    "realThresholdSigningVerified": false,
+    "realBroadcastVerified": false,
+    "mldsaCryptographicVerification": false,
+    "reason": "Production status remains false until independently verifiable live-chain evidence and ICP deployment IDs exist."
   }
 }

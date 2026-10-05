@@ -1,0 +1,12 @@
+{
+  "algorithm": "ML-DSA-65",
+  "standard": "NIST FIPS 204",
+  "engine": "@noble/post-quantum",
+  "digestHex": "2fb1b97518a17e4a02f95e4f407eb687fbab68fdade0b4bff938177b7770ea11",
+  "publicKeyBytes": 1952,
+  "signatureBytes": 3309,
+  "positiveVerification": true,
+  "tamperRejected": true,
+  "wrongKeyRejected": true,
+  "verifiedAt": "2026-10-05T17:04:03.717Z"
+}

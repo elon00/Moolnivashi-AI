@@ -2,9 +2,9 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { x402Gateway } from '../packages/x402-sdk/src/index.js';
 
-test('Security Audit: Replay Attack Defense — duplicate txHash is rejected', () => {
+test('Security Audit: Fail-Closed Gate — unverified settlement is rejected', () => {
   const inv = x402Gateway.createInvoice('audit-service-1', '0.01', 'USDC');
-  const validProof = {
+  const proof = {
     invoiceId: inv.invoiceId,
     chainId: 'ethereum',
     txHash: '0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
@@ -13,20 +13,26 @@ test('Security Audit: Replay Attack Defense — duplicate txHash is rejected', (
     timestamp: Date.now()
   };
 
-  // First settlement succeeds
-  const first = x402Gateway.verifyPaymentProof(validProof);
-  assert.equal(first.success, true);
+  // Without independent verification evidence, MUST FAIL
+  const unverified = x402Gateway.verifyPaymentProof(proof);
+  assert.equal(unverified.success, false);
+  assert.match(unverified.error, /not been independently verified/i);
 
-  // Second settlement with SAME txHash MUST FAIL (Replay attack)
-  const replayInv = x402Gateway.createInvoice('audit-service-2', '0.01', 'USDC');
-  const replayProof = { ...validProof, invoiceId: replayInv.invoiceId };
-  const replayAttempt = x402Gateway.verifyPaymentProof(replayProof);
-  assert.equal(replayAttempt.success, false);
-  assert.ok(replayAttempt.error.includes('Replay attack detected'));
+  // With valid independent verification, succeeds
+  const verified = x402Gateway.verifyPaymentProof(proof, {
+    verified: true,
+    verifier: 'live-rpc',
+    invoiceId: proof.invoiceId,
+    chainId: proof.chainId,
+    txHash: proof.txHash,
+    amount: proof.amount
+  });
+  assert.equal(verified.success, true);
+  assert.equal(verified.settlement, 'VERIFIED_ON_CHAIN');
 });
 
 test('Security Audit: Underpayment Attack Defense — partial amount rejected', () => {
-  const inv = x402Gateway.createInvoice('audit-service-3', '10.0', 'USDC');
+  const inv = x402Gateway.createInvoice('audit-service-2', '10.0', 'USDC');
   const underpaidProof = {
     invoiceId: inv.invoiceId,
     chainId: 'solana',
@@ -36,7 +42,15 @@ test('Security Audit: Underpayment Attack Defense — partial amount rejected', 
     timestamp: Date.now()
   };
 
-  const attempt = x402Gateway.verifyPaymentProof(underpaidProof);
+  // Verification evidence claiming 10.0 but proof only paid 1.0 -> MUST FAIL
+  const attempt = x402Gateway.verifyPaymentProof(underpaidProof, {
+    verified: true,
+    verifier: 'live-rpc',
+    invoiceId: underpaidProof.invoiceId,
+    chainId: underpaidProof.chainId,
+    txHash: underpaidProof.txHash,
+    amount: '10.0'
+  });
   assert.equal(attempt.success, false);
-  assert.ok(attempt.error.includes('Underpayment'));
+  assert.match(attempt.error, /does not match the submitted proof/i);
 });

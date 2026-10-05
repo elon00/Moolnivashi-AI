@@ -1,0 +1,67 @@
+{
+  "project": "Moolnivashi AI",
+  "generatedAt": "2026-10-05T17:04:32.366Z",
+  "strict": false,
+  "results": [
+    {
+      "title": "All unit/integration tests",
+      "status": "PASS",
+      "duration": "9.03"
+    },
+    {
+      "title": "14-chain adapter contract tests",
+      "status": "PASS",
+      "duration": "5.55"
+    },
+    {
+      "title": "Universal router tests",
+      "status": "PASS",
+      "duration": "1.34"
+    },
+    {
+      "title": "x402 fail-closed/replay tests",
+      "status": "PASS",
+      "duration": "1.13"
+    },
+    {
+      "title": "ML-DSA-65 cryptographic verification",
+      "status": "PASS",
+      "duration": "1.10"
+    },
+    {
+      "title": "x402 proof-contract verification",
+      "status": "PASS",
+      "duration": "0.95"
+    },
+    {
+      "title": "Truth-aligned mission pipeline",
+      "status": "PASS",
+      "duration": "8.67"
+    },
+    {
+      "title": "Production frontend build",
+      "status": "PASS",
+      "duration": "18.98"
+    }
+  ],
+  "codeTruth": {
+    "testsGreen": true,
+    "dfxConfigured": true,
+    "canisterCount": 12,
+    "fourteenChainArchitecture": true,
+    "liveChainEvidenceVerified": false,
+    "thresholdSigningVerified": false,
+    "realBroadcastVerified": false,
+    "mldsaCryptographicVerification": true,
+    "icpMainnetEvidenceVerified": false
+  },
+  "blockers": [
+    "14-chain live RPC/testnet evidence is not independently verified",
+    "real ICP threshold signing proof is still pending",
+    "real external-chain broadcast/confirmation evidence is still pending",
+    "ICP mainnet canister IDs are not independently verified"
+  ],
+  "baselineGreen": true,
+  "productionFullyGreen": false,
+  "evidenceDetail": "missing deployments/mainnet-evidence.json"
+}
