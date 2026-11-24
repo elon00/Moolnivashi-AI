@@ -55,7 +55,7 @@ jobs:
           dfx build
       - name: Upload green report
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: master-green-${{ github.run_id }}
           path: |
@@ -101,7 +101,7 @@ jobs:
           dfx canister --network ic id --all > deployments/ic-canister-ids.txt
           rm -f /tmp/moolnivashi-identity.pem
       - name: Upload deployment IDs
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ic-mainnet-canister-ids-${{ github.run_id }}
           path: deployments/ic-canister-ids.txt
