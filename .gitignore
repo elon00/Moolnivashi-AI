@@ -24,3 +24,6 @@ npm-debug.log*
 Thumbs.db
 .vscode/
 .idea/
+
+# Lean 4 build artifacts
+lean_verify/.lake/
