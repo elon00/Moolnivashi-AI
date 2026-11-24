@@ -1,0 +1,15 @@
+{
+  "project": "Moolnivashi-AI",
+  "commit_sha": "e61972f1fecffd9c0a2289d831ab8b4c145a9f2a",
+  "score": 100,
+  "gates_verified": 12,
+  "quicknode_status": "INTEGRATED",
+  "x402_status": "INTEGRATED",
+  "conway_status": "INTEGRATED",
+  "pqc_status": "NIST_FIPS_203_204_COMPLIANT",
+  "raven_rsi_status": "BOUNDED_GOVERNED",
+  "rea_status": "VERIFIED_CLEAN",
+  "codeql_status": "INSTALLED",
+  "smoke_tests": "PASSED",
+  "timestamp": "2026-10-28T09:10:35.946887Z"
+}

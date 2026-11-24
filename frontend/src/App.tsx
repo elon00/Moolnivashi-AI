@@ -33,6 +33,9 @@ import {
   ChainFusionTab 
 } from './components/ChainFusionTab';
 import { 
+  WhitePaperTab 
+} from './components/WhitePaperTab';
+import { 
   TabType, 
   WalletType 
 } from './types';
@@ -45,7 +48,8 @@ import {
   Bot, 
   Clock, 
   ShieldCheck, 
-  Network 
+  Network,
+  Scale
 } from 'lucide-react';
 
 export const App: React.FC = () => {
@@ -56,6 +60,7 @@ export const App: React.FC = () => {
 
   const navItems: { id: TabType; label: string; icon: React.ReactNode }[] = [
     { id: 'dashboard', label: 'Dashboard', icon: <LayoutDashboard className="w-4 h-4" /> },
+    { id: 'whitepaper', label: 'White Paper & Rights', icon: <Scale className="w-4 h-4" /> },
     { id: 'token_dao', label: 'Token & SNS DAO', icon: <Coins className="w-4 h-4" /> },
     { id: 'launchpad', label: 'Launchpad', icon: <Rocket className="w-4 h-4" /> },
     { id: 'x402_bazaar', label: 'x402 Bazaar', icon: <Zap className="w-4 h-4" /> },
@@ -110,6 +115,7 @@ export const App: React.FC = () => {
       {/* Main Viewport */}
       <main className="flex-1 max-w-7xl mx-auto w-full px-4 lg:px-8 py-6">
         {activeTab === 'dashboard' && <DashboardTab onNavigate={setActiveTab} onOpenQR={() => setIsQROpen(true)} />}
+        {activeTab === 'whitepaper' && <WhitePaperTab />}
         {activeTab === 'token_dao' && <TokenDAOTab />}
         {activeTab === 'launchpad' && <LaunchpadTab />}
         {activeTab === 'x402_bazaar' && <X402BazaarTab />}

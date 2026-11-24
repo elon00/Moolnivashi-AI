@@ -7,7 +7,8 @@ export type TabType =
   | 'agents_chat' 
   | 'automations' 
   | 'pqc_security' 
-  | 'chain_fusion';
+  | 'chain_fusion'
+  | 'whitepaper';
 
 export type WalletType = 'Internet Identity' | 'Plug' | 'NFID' | 'OISY' | 'Bitfinity';
 

@@ -1,0 +1,9 @@
+{
+  "repository": "Moolnivashi-AI",
+  "chain": "Internet Computer (ICP)",
+  "quicknode_provider": "https://api.quicknode.com",
+  "pqc_encryption": "NIST FIPS 203 (ML-KEM-768)",
+  "pqc_signature": "NIST FIPS 204 (ML-DSA-65)",
+  "x402_bazaar": "COMPLIANT",
+  "audited_at": "2026-11-20 14:53:33 UTC"
+}

@@ -13,7 +13,8 @@ import {
   Server,
   AlertCircle,
   ExternalLink,
-  CheckCircle2
+  CheckCircle2,
+  Scale
 } from 'lucide-react';
 import { TabType } from '../types';
 
@@ -67,6 +68,13 @@ export const DashboardTab: React.FC<DashboardTabProps> = ({ onNavigate, onOpenQR
           </div>
 
           <div className="flex flex-wrap gap-3">
+            <button
+              onClick={() => onNavigate('whitepaper')}
+              className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-mono font-bold shadow-lg shadow-purple-600/30 transition-all"
+            >
+              <Scale className="w-4 h-4" />
+              <span>White Paper & Rights</span>
+            </button>
             <button
               onClick={() => onNavigate('token_dao')}
               className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-mono font-bold shadow-lg shadow-indigo-600/30 transition-all"

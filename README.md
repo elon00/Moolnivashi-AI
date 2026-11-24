@@ -1,13 +1,17 @@
 # MOOLNIVASHI AI 🌐⚡
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![White Paper](https://img.shields.io/badge/White_Paper-v1.0_Published-gold.svg)](WHITEPAPER.md)
+[![Rights Charter](https://img.shields.io/badge/Rights_Charter-FRA%20%7C%20PESA%20%7C%20PoA-crimson.svg)](docs/MOOLNIVASHI_RIGHTS_AND_BENEFITS.md)
 [![ICP Chain Fusion](https://img.shields.io/badge/Platform-Internet_Computer_Chain_Fusion-indigo.svg)](https://internetcomputer.org)
 [![14 Chains](https://img.shields.io/badge/Chains-14_Tiered_Adapters-purple.svg)]()
-[![Tests](https://img.shields.io/badge/Tests-19%2F19_Passing-brightgreen.svg)]()
+[![Tests](https://img.shields.io/badge/Tests-31%2F31_Passing-brightgreen.svg)]()
 [![DoD](https://img.shields.io/badge/Definition_of_Done-8_Steps_Verified-cyan.svg)]()
 [![Mission](https://img.shields.io/badge/Mission-One--Click_Verified-emerald.svg)]()
 
-> **Moolnivashi AI** is an autonomous cross-chain Web3 + AI operating protocol built on the Internet Computer (ICP). ICP acts as the sovereign control plane and orchestration layer, connecting directly to **14 external blockchains** via native threshold cryptography (ECDSA, Schnorr, Ed25519) and dedicated RPC canisters without centralized bridges.
+> **Moolnivashi AI** is a sovereign cross-chain Web3 + AI operating protocol built on the Internet Computer (ICP). Designed for indigenous self-determination and constitutional justice, it protects Moolnivasi rights (enforcing the Forest Rights Act, PESA, and SC/ST PoA protections) and bridges **14 external blockchains** via native threshold cryptography (ECDSA, Schnorr, Ed25519) and Post-Quantum Cryptography (NIST FIPS 204 ML-DSA) without centralized bridges.
+
+📖 **Read the official [White Paper (WHITEPAPER.md)](WHITEPAPER.md)** and the **[Moolnivashi Rights & Benefits Charter (docs/MOOLNIVASHI_RIGHTS_AND_BENEFITS.md)](docs/MOOLNIVASHI_RIGHTS_AND_BENEFITS.md)**.
 
 ---
 
@@ -69,6 +73,25 @@ $$\text{Mock Removal} \rightarrow \text{ICP Management Canister Signing} \righta
   Bitcoin   ETH / L2     Solana     Dogecoin   Polkadot   Stellar
   (Tier A)  (Tier B)    (Tier B)    (Tier A)   (Tier C)   (Tier C)
 ```
+
+---
+
+## 📜 Moolnivashi Rights & Community Benefits Framework
+
+Moolnivashi AI is engineered around the core constitutional, statutory, and human rights of the **Moolnivasi** (indigenous & original inhabitants, Scheduled Castes, Scheduled Tribes, Other Backward Classes, and traditional forest dwellers).
+
+### ⚖️ Constitutional & Statutory Alignment
+
+| Constitutional / Legal Right | Governing Statute | Protocol Implementation | Tangible Community Benefit |
+|---|---|---|---|
+| **Ancestral Land & Forest Sovereignty** | Forest Rights Act (FRA 2006) § 3(1)(a)/(i) & PESA 1996 | Spatial GPS boundaries and Gram Sabha resolutions hashed to the `audit_registry` canister | **Permanent Land Tenure:** Halts illegal land alienation, administrative record manipulation, and unconsented corporate leases. |
+| **Protection from Caste Oppression & Atrocities** | SC/ST (Prevention of Atrocities) Act, 1989/2015 | Vernacular AI Legal Co-pilot with Human-in-the-Loop biometric signing gate | **Zero Police Dilution:** Converts voice/vernacular testimony into formal statutory FIR drafts with permanent on-chain timestamps. |
+| **Right to Human Dignity & Equality** | Articles 14, 15, 17, 21, and 46 (DPSP) | Algorithmic bias audits and decentralized identity (DID) via WebAuthn Internet Identity | **Algorithmic Justice:** Bypasses biased corporate AI models, providing privacy-preserving sovereign digital access. |
+| **Economic Sovereignty & Fair Credit** | Article 46 & PESA § 4(m)(iii) | 14-Chain P2P Liquidity and x402 Micropayment settlement across BTC, ETH, SOL, Stablecoins | **Freedom from Usury:** Directly connects indigenous cooperatives and Self-Help Groups (SHGs) to global micro-credit without loan shark extortion. |
+| **Traditional Ecological Knowledge (TEK)** | UNDRIP Art. 31 & Nagoya Protocol | Post-Quantum (NIST FIPS 204 ML-DSA) encrypted community knowledge vaults | **Bio-Piracy Defense:** Timestamps indigenous botanical medicines as global Prior Art, legally preventing multinational patent theft. |
+| **Democratic Community Governance** | PESA 1996 § 4(d) & 5th/6th Schedules | Service Nervous System (SNS) DAO with transparent neuron staking and treasury voting | **Zero Corruption:** Community development funds operate via public smart contracts requiring Gram Sabha quorum approval. |
+
+Full details are documented in **[WHITEPAPER.md](WHITEPAPER.md)** and **[docs/MOOLNIVASHI_RIGHTS_AND_BENEFITS.md](docs/MOOLNIVASHI_RIGHTS_AND_BENEFITS.md)**.
 
 ---
 

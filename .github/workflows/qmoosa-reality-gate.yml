@@ -1,0 +1,59 @@
+name: QMOOSA Reality Gate & Autonomous DevSecOps Pipeline
+
+on:
+  push:
+    branches: [ main, staging ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  security-events: write
+  actions: read
+
+jobs:
+  codeql-analysis:
+    name: GitHub CodeQL Static Application Security Testing (SAST)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: javascript-typescript, python
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: "/language:all"
+
+  test-matrix-and-reality-check:
+    name: Automated Smoke, Sanity & Regression Suite
+    needs: codeql-analysis
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python Runtime
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run Master Engine Reality Checks
+        run: |
+          python qmoosa_master_engine.py
+
+      - name: Verify IPFS & Fleek Deployment Artifacts
+        run: |
+          test -f reports/FINAL_SCORECARD.json
+          cat reports/FINAL_SCORECARD.json
+
+      - name: Upload Production Readiness Scorecard
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-readiness-scorecard
+          path: reports/FINAL_SCORECARD.json

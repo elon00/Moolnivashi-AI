@@ -1,0 +1,12 @@
+{
+  "name": "Moolnivashi-AI",
+  "chain": "Internet Computer (ICP)",
+  "distDir": "dist",
+  "storage": {
+    "provider": "ipfs",
+    "pin": true
+  },
+  "domains": [
+    "moolnivashi-ai.eth.limo"
+  ]
+}

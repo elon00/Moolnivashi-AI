@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "master": "node scripts/master-runner.js",
-    "master:strict": "node scripts/master-strict.js",
-    "production:finisher": "node scripts/master-runner.js",
+    "master:strict": "node scripts/master-runner.js --strict",
+    "production:finisher": "node scripts/production-finisher.js",
     "start": "npm --prefix frontend run dev",
     "build": "npm --prefix frontend run build",
     "test": "node --test tests/*.test.js",
@@ -23,12 +23,9 @@
     "master:green": "node scripts/master-green.js",
     "master:green:testnet": "node scripts/master-green.js --mode testnet",
     "master:green:mainnet": "node scripts/master-green.js --mode mainnet",
-    "master": "node scripts/master-runner.js",
-    "master:strict": "node scripts/master-runner.js --strict",
     "deploy:mainnet": "bash scripts/deploy-mainnet.sh",
     "verify:pqc": "node scripts/pqc-verifier.js",
-    "verify:x402": "node scripts/x402-verifier.js",
-    "production:finisher": "node scripts/production-finisher.js"
+    "verify:x402": "node scripts/x402-verifier.js"
   },
   "keywords": [
     "icp",
